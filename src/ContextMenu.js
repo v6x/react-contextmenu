@@ -48,6 +48,8 @@ export default class ContextMenu extends AbstractMenu {
             y: 0,
             isVisible: false
         });
+
+        this.visibleReqIds = [];
     }
 
     getSubMenuType() { // eslint-disable-line class-methods-use-this
@@ -60,6 +62,7 @@ export default class ContextMenu extends AbstractMenu {
 
     componentDidUpdate() {
         const wrapper = window.requestAnimationFrame || setTimeout;
+        const wrapperCanceler = window.cancelAnimationFrame || clearTimeout;
         if (this.state.isVisible) {
             wrapper(() => {
                 const { x, y } = this.state;
@@ -68,16 +71,21 @@ export default class ContextMenu extends AbstractMenu {
                     ? this.getRTLMenuPosition(x, y)
                     : this.getMenuPosition(x, y);
 
-                wrapper(() => {
+                const visibleReqId = wrapper(() => {
+                    this.visibleReqIds =
+                        this.visibleReqIds.filter(elem => elem !== visibleReqId);
                     if (!this.menu) return;
                     this.menu.style.top = `${top}px`;
                     this.menu.style.left = `${left}px`;
                     this.menu.style.opacity = 1;
                     this.menu.style.pointerEvents = 'auto';
                 });
+                this.visibleReqIds.push(visibleReqId);
             });
         } else {
             wrapper(() => {
+                this.visibleReqIds.forEach(x => wrapperCanceler(x));
+                this.visibleReqIds = [];
                 if (!this.menu) return;
                 this.menu.style.opacity = 0;
                 this.menu.style.pointerEvents = 'none';
