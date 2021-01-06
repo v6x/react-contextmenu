@@ -1,6 +1,6 @@
 {
-  "name": "react-contextmenu",
-  "version": "2.13.0",
+  "name": "@voyagerx/react-contextmenu",
+  "version": "2.13.1",
   "description": "Context Menu implemented in React",
   "main": "modules/index.js",
   "module": "es6/index.js",
@@ -39,12 +39,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vkbansal/react-contextmenu.git"
+    "url": "https://github.com/v6x/react-contextmenu.git"
   },
   "bugs": {
-    "url": "https://github.com/vkbansal/react-contextmenu/issues"
+    "url": "https://github.com/v6x/react-contextmenu/issues"
   },
-  "homepage": "https://github.com/vkbansal/react-contextmenu",
+  "homepage": "https://github.com/v6x/react-contextmenu",
   "dependencies": {
     "classnames": "^2.2.5",
     "object-assign": "^4.1.0"

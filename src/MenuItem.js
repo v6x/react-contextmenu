@@ -17,6 +17,7 @@ export default class MenuItem extends Component {
         onClick: PropTypes.func,
         onMouseLeave: PropTypes.func,
         onMouseMove: PropTypes.func,
+        onMouseDown: PropTypes.func,
         preventClose: PropTypes.bool,
         selected: PropTypes.bool
     };
@@ -31,6 +32,7 @@ export default class MenuItem extends Component {
         onClick() { return null; },
         onMouseMove: () => null,
         onMouseLeave: () => null,
+        onMouseDown: () => null,
         preventClose: false,
         selected: false
     };
@@ -52,6 +54,15 @@ export default class MenuItem extends Component {
         if (this.props.preventClose) return;
 
         hideMenu();
+    }
+
+    handleMouseDown = (event) => {
+        callIfExists(
+            this.props.onMouseDown,
+            event,
+            assign({}, this.props.data, store.data),
+            store.target
+        );
     }
 
     render() {
@@ -82,7 +93,8 @@ export default class MenuItem extends Component {
                 aria-orientation={divider ? 'horizontal' : null}
                 ref={(ref) => { this.ref = ref; }}
                 onMouseMove={this.props.onMouseMove} onMouseLeave={this.props.onMouseLeave}
-                onTouchEnd={this.handleClick} onClick={this.handleClick}>
+                onTouchEnd={this.handleClick} onClick={this.handleClick}
+                onMouseDown={this.handleMouseDown}>
                 {divider ? null : children}
             </div>
         );
