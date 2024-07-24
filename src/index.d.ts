@@ -1,4 +1,4 @@
-declare module "react-contextmenu" {
+declare module "@voyagerx/react-contextmenu" {
     import * as React from "react";
 
     interface ContextMenuProps {
@@ -31,6 +31,7 @@ declare module "react-contextmenu" {
         divider?: boolean,
         preventClose?: boolean,
         onClick?: {(event: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>, data: Object, target: HTMLElement): void} | Function,
+        onMouseDown?: {(event: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>, data: Object, target: HTMLElement): void} | Function,
     }
 
     interface SubMenuProps {
@@ -56,7 +57,7 @@ declare module "react-contextmenu" {
     export = ReactContextmenu;
 }
 
-declare module "react-contextmenu/modules/actions" {
+declare module "@voyagerx/react-contextmenu/modules/actions" {
     module ReactContextmenuActions {
         export function showMenu(opts?: any, target?: HTMLElement): void;
         export function hideMenu(opts?: any, target?: HTMLElement): void;
