@@ -1,6 +1,6 @@
 {
   "name": "@voyagerx/react-contextmenu",
-  "version": "2.13.1",
+  "version": "2.13.2",
   "description": "Context Menu implemented in React",
   "main": "modules/index.js",
   "module": "es6/index.js",
